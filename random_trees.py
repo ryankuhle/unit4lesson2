@@ -9,20 +9,27 @@
 ## Outliers on the top end could increase the overall averages that are used in the decision tree, which  could lead to a higher threshold for admission which leads to fewer students being admitted. If the school needs X amount of students  admitted, you might need to create a list based on the SAT/GPA tree and then admit the top X students, excluding any that might be denied for other reasons (financial, criminal, etc.)
 '''
 
-# GOAL
-## Classify persons activity based on data collected from smartphone
-
 import pandas as pd
+import string
 
-#Build data frame using raw data, activity number, and subject number
+# Build data frame using raw data, activity number, and subject number
 col_data = pd.read_csv('data/features.txt', sep=' ', header=None, names=['index', 'vars'])
 COLS = col_data.vars.tolist()
+
+# Remove special characters from column names
+identity = string.maketrans("", "")
+COLS = [s.translate(identity, "(),-") for s in COLS]
+
 volunteer_data = pd.read_csv('data/train/X_train.txt', names=COLS)
 activity_data = pd.read_csv('data/train/y_train.txt', header=None, names=['activity'])
-volunteer_data['activity'] = activity_data['activity']
+volunteer_data['activity'] = activity_data['activity'].astype('category')
 subject_data = pd.read_csv('data/train/subject_train.txt', header=None, names=['subject'])
 volunteer_data['subject'] = subject_data['subject']
 
-col_names = list(volunteer_data.columns.values)
-print col_names
-#print volunteer_data
+'''
+Additional Cleaning to do
+Identify and fix column names containing BodyBody
+Drop Body and Mag from column names.
+Map mean and std to Mean and STD
+Identify and remove duplicate column names.
+'''
