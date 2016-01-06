@@ -33,3 +33,5 @@ Drop Body and Mag from column names.
 Map mean and std to Mean and STD
 Identify and remove duplicate column names.
 '''
+
+#Plot a histogram of Body Acceleration Magnitude (i.e. histogram of all 6 activities) to see how each variable does as a predictor of static versus dynamic activities.
