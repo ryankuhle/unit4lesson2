@@ -23,4 +23,6 @@ volunteer_data['activity'] = activity_data['activity']
 subject_data = pd.read_csv('data/train/subject_train.txt', header=None, names=['subject'])
 volunteer_data['subject'] = subject_data['subject']
 
-print volunteer_data
+col_names = list(volunteer_data.columns.values)
+print col_names
+#print volunteer_data
